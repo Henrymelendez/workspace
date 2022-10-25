@@ -15,4 +15,9 @@ public class Member {
         // What's the superclass of Member?  Is there a no-arg ctor in that class?
         System.out.println("Member ctor");
     }
+
+    @Override
+    public String toString() {
+        return "Member{}";
+    }
 }

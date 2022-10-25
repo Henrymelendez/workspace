@@ -11,6 +11,10 @@ public class SalariedEmployee extends Employee{
         super(name, hireDate);
         this.salary = salary;
     }
+    @Override
+    public void pay(){
+        System.out.println(getName() + " get paid a salary " + getSalary());
+    }
 
     public double getSalary() {
         return salary;
