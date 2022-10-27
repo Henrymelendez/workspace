@@ -97,7 +97,15 @@ public class Car {
     }
 
     public void setBrand(String brand) {
-        this.brand = brand;
+
+        try {
+            if(brand instanceof String){
+                this.brand = brand;
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("brand must be a string");
+
+        }
     }
 
     public String getModel() {
@@ -105,6 +113,7 @@ public class Car {
     }
 
     public void setModel(String model) {
+
         this.model = model;
     }
 
@@ -114,10 +123,12 @@ public class Car {
 
     public void setYear(int year) {
 
-        if (year >= MIN_YEAR && year <= MAX_YEAR) {
-            this.year = year;
+        try {
+            if (year >= MIN_YEAR && year <= MAX_YEAR) {
+                this.year = year;
 
-        } else {
+            }
+        } catch (IllegalArgumentException e) {
             this.year = MAX_YEAR;
         }
 

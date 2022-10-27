@@ -8,12 +8,15 @@
 
 package com.hr.personnel;
 
+import gov.irs.IllegalWageException;
+
 import java.time.LocalDate;
 
 public class HourlyEmployee extends Employee {
     // fields
     private double rate;
     private double hours;
+    public static final double FEDERAL_MINIMUM_WAGE = 15.0;
 
     // constructors
     public HourlyEmployee() {
@@ -46,7 +49,18 @@ public class HourlyEmployee extends Employee {
         return rate;
     }
 
-    public void setRate(double rate) {
+    public void setRate(double rate)  {
+
+        try {
+            if(rate < 15 ){
+                throw new IllegalWageException("Illegal Wage: " + rate + " Federal Minimum Rate is " + FEDERAL_MINIMUM_WAGE);
+            }
+
+
+        } catch (IllegalWageException e) {
+            System.out.println("Illegal Wage: " + rate + " Federal Minimum is " + FEDERAL_MINIMUM_WAGE);
+        }
+
         this.rate = rate;
     }
 
