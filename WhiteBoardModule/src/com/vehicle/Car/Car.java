@@ -140,10 +140,12 @@ public class Car {
 
     public void setCarType(CarType carType) {
 
-        if (carType == null) {
+        try {
+            if (carType != null) {
+                this.carType = carType;
+            }
+        } catch (Exception e) {
             this.carType = CarType.SEDAN;
-        } else {
-            this.carType = carType;
         }
     }
 
