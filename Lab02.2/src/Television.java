@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Television {
 
     // Fields
@@ -156,6 +158,16 @@ public class Television {
                 '}' + " DisplayType= "+ displayType;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Television that = (Television) o;
+        return volume == that.volume && savedVolume == that.savedVolume && muted == that.muted && brand.equals(that.brand) && displayType == that.displayType;
+    }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(brand, volume, savedVolume, muted, displayType);
+    }
 }

@@ -1,5 +1,7 @@
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class Arrays2 {
 
@@ -31,33 +33,25 @@ public class Arrays2 {
         System.out.println(Arrays.equals(myStringArrayA, myStringArrayC));
 
         String s =  "I love Boston.  Yes, you do love boston.";
-        String[] arr = s.toLowerCase().split("[, ?.@]+");
-        String[] resu = new String[arr.length];
+        String[] initialWordsInArray = s.split("[, ?.@]+");
+        String[] arr = new String[initialWordsInArray.length];
+        int[] n = new int[initialWordsInArray.length];
+        int currentIndex= 0;
 
 
-        for(int i = 0; i < arr.length; i++){
+        for(int i = 0; i < initialWordsInArray.length; i++){
 
-            int count = 0;
+            int foundIndex = isFound(initialWordsInArray, initialWordsInArray[i]);
 
-            for(int j = i; j < arr.length; j++){
-
-                if(arr[i].equals(arr[j])){
-                    count++;
-                }
+            if(foundIndex >= 0){
+                n[foundIndex]++;
+            }
+            else {
+                arr[currentIndex] = initialWordsInArray[i];
+                n[currentIndex] = 1;
             }
 
-            if(count == 1){
-                resu[i] = arr[i];
-            }
         }
-
-
-        for(int i =0; i < resu.length; i++){
-            if(resu[i] != null){
-                System.out.println(resu[i]);
-            }
-        }
-        System.out.println();
 
         String str = "Life is Good!";
         char[] sarr = str.toCharArray();
@@ -65,8 +59,45 @@ public class Arrays2 {
         System.out.println(sarr[0]);
 
 
+        Map<String, Integer> result = new HashMap<>();
+
+        for(int i = 0; i < initialWordsInArray.length; i++){
+
+            result.put(initialWordsInArray[i].toLowerCase(), result.getOrDefault(initialWordsInArray[i].toLowerCase(), 0) + 1);
+        }
+
+        for(Map.Entry<String, Integer> item : result.entrySet()){
+            System.out.println(item.getKey() + " " + item.getValue());
+        }
+
 
 
     }
+
+    private static int isFound(String[] arr, String s) {
+        int foundIndex = -1;
+
+        for (int i = 0; i < arr.length; i++){
+
+            if(arr[i].equalsIgnoreCase(s)){
+                foundIndex = i;
+                break;
+            }
+
+        }
+
+        return foundIndex;
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 }
